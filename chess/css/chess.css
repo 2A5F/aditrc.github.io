@@ -1,0 +1,177 @@
+.boardChunk>article{
+    float: left;
+    box-sizing: border-box;
+    cursor: default;
+}
+.boardChunk>article>div{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    box-sizing: border-box;
+    border: 3px solid rgba(0, 0, 0, 0);
+    transition: box-shadow 0.35s,outline 0.35s,border 0.35s,transform 0.35s;
+    text-align: center;
+}
+.boardChunk>article>div:hover{
+    box-shadow:0 0 25pt rgba(0, 0, 0, 0.35);
+    border: 3px double rgba(0, 0, 0, 0.15);
+    transform: scale(1.1,1.1);
+}
+.boardChunk>article>div>div{
+    border: 2px solid rgba(0, 0, 0, 0);
+    box-shadow: 0 0 25pt rgba(0, 0, 0, 0);
+    transition:transform 0.35s,border 0.35s,background 0.35s,box-shadow 0.35s;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0);
+}
+.boardChunk>article>div>div.c{
+    box-shadow: 0 0 25pt rgba(0, 0, 0, 0.35);
+}
+.boardChunk>article>div>div::before{
+    content: '';
+    opacity: 0;
+    transition: opacity 0.35s;
+}
+.boardChunk>article>div>div.c::before{
+    opacity: 1;
+}
+.boardChunk>article>div:hover>div{
+    cursor: pointer;
+}
+
+.boardChunk>article>div>div.br{
+    border-color: #6ec672;
+    color: #f3f3f3;
+    background-color: #46804a;
+}
+.boardChunk>article>div>div.br::before{
+    content: '兵'
+}
+.boardChunk>article>div>div.bb{
+    border-color: #6ec672;
+    color: #232323;
+    background-color: #46804a;
+}
+.boardChunk>article>div>div.bb::before{
+    content: '卒'
+}
+.boardChunk>article>div>div.pr{
+    border-color: #c69c13;
+    color: #f3f3f3;
+    background-color: #805435;
+}
+.boardChunk>article>div>div.pr::before{
+    content: '炮'
+}
+.boardChunk>article>div>div.pb{
+    border-color: #c69c13;
+    color: #232323;
+    background-color: #805435;
+}
+.boardChunk>article>div>div.pb::before{
+    content: '炮'
+}
+.boardChunk>article>div>div.jr{
+    color: #fcfcfc;
+    border-color: #cccccc;
+    background-color: rgba(128, 43, 34, 0.75);
+}
+.boardChunk>article>div>div.jr::before{
+    content: '车'
+}
+.boardChunk>article>div>div.jb{
+    color: #acacac;
+    border-color: #454545;
+    background-color: rgba(128, 43, 34, 0.75);
+}
+.boardChunk>article>div>div.jb::before{
+    content: '车'
+}
+.boardChunk>article>div>div.mr{
+    border-color: #c6a902;
+    color: #f3f3f3;
+    background-color: #806328;
+}
+.boardChunk>article>div>div.mr::before{
+    content: '马'
+}
+.boardChunk>article>div>div.mb{
+    border-color: #c6a902;
+    color: #232323;
+    background-color: #806328;
+}
+.boardChunk>article>div>div.mb::before{
+    content: '马'
+}
+.boardChunk>article>div>div.xr{
+    border-color: #5c8f6e;
+    color: #f3f3f3;
+    background-color: #5d9eb2;
+}
+.boardChunk>article>div>div.xr::before{
+    content: '相'
+}
+.boardChunk>article>div>div.xb{
+    border-color: #2c806e;
+    color: #454545;
+    background-color: #5d9eb2;
+}
+.boardChunk>article>div>div.xb::before{
+    content: '象'
+}
+.boardChunk>article>div>div.sr{
+    border-color: #a53e46;
+    color: #820725;
+    background-color: rgba(216, 216, 216, 0.95);
+    box-shadow: 0 0 15pt rgba(216, 216, 216, 0.35);
+}
+.boardChunk>article>div>div.sr::before{
+    content: '士'
+}
+.boardChunk>article>div>div.sb{
+    border-color: #454545;
+    color: #232323;
+    background-color: rgba(216, 216, 216, 0.95);
+    box-shadow: 0 0 15pt rgba(216, 216, 216, 0.35);
+}
+.boardChunk>article>div>div.sb::before{
+    content: '士'
+}
+.boardChunk>article>div>div.j{
+    border-color: #820725;
+    color: #cccccc;
+    background-color: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 25pt #820725;
+}
+.boardChunk>article>div>div.j::before{
+    content: '将'
+}
+.boardChunk>article>div>div.s{
+    border-color: #363636;
+    color: #acacac;
+    background-color: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 25pt #363636;
+}
+.boardChunk>article>div>div.s::before{
+    content: '帅'
+}
+.boardChunk>article>div.cho{
+    box-shadow: rgb(107, 194, 116) 0px 0px 25pt;
+    border: 3px solid rgb(107, 194, 116);
+} 
+.boardChunk>article>div.pot{
+    box-shadow: rgb(238, 185, 72) 0px 0px 25pt;
+    border: 3px solid rgb(238, 185, 72);
+}
+.boardChunk>article>div.tar{
+    box-shadow: rgb(250, 63, 70) 0px 0px 25pt;
+    border: 3px solid rgb(250, 63, 70);
+}
+.boardChunk>article>div.cho>div,
+.boardChunk>article>div.pot>div,
+.boardChunk>article>div.tar>div{
+    box-shadow: 0 0 25pt transparent;
+}

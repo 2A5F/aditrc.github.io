@@ -1,0 +1,29 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>棋</title>
+        <meta content="utf-8">
+        <link href="./css/base.css" rel="stylesheet">
+        <link href="./css/chess.css" rel="stylesheet">
+        <script src="./vue.min.js"></script>
+        <script src="./js/board.js"></script>
+    </head>
+    <body>
+        <article id="consoles">
+            <input v-model='val' @keydown.enter='ret' v-focus>
+            <p class="input"></p>
+            <button @click="ret">↵</button>
+        </article>
+        <div id="point">
+            <section id="board" :style='[size]'>
+                <article class="line" :style='[csize]'>
+                    <board-line :size='chunkSize'></board-line>
+                </article>
+                <article class="chunk" :style='[csize]'>
+                    <board-chunk :size='chunkSize' :padding='paddingSize'
+                     :border='chunkBorder' :font='chunkFont'></board-chunk>
+                </article>
+            </section>
+        </div>
+    </body>
+</html>
