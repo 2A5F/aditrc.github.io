@@ -1,0 +1,11 @@
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    console.log(axios)
+    axios.get('https://raw.githubusercontent.com/Aditrc/aditrc.github.io/master/test/test.json')
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+</script>
