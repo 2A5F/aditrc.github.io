@@ -1,0 +1,137 @@
+<!-- Seamless Map Game -->
+<meta charset=utf-8>
+<meta name="viewport" content="width=600">
+<link href="../favicon.png" rel=icon>
+<script src="./vue.min.js"></script>
+<script src="./axios.min.js"></script>
+<script src="./lodash.min.js"></script>
+<script src="./js-yaml.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded',()=>{
+        const load = new Vue({
+            el:'#loading',
+            data:{hide:false},
+            created(){
+                this.$on('finish',()=>{
+                    this.hide=true
+                })
+            }
+        })
+        new Vue({
+            el:'section',
+            data:{
+                base:[],
+                ThreeDSpace:[],
+                other:[],
+            },
+            methods: {
+                hnum(numstr){
+                    numstr=`${numstr}`
+                    const outstr=[]
+                    let last = numstr.length
+                    for(let i=numstr.length-4;i>=0;i-=4){
+                       outstr.unshift(numstr.substring(last, i))
+                       last=i
+                    }
+                    outstr.unshift(numstr.substring(last, 0))
+                    return outstr.join(' ')
+                }
+            },
+            created () {
+                axios.get('https://raw.githubusercontent.com/Aditrc/SMGSize/master/smg.yaml')
+                    .then(response => {
+                        console.log(response)
+                        const data = jsyaml.safeLoad(response.data)
+                        this.base= _.orderBy(data.base, ['size','name'], 'desc')
+                        this.ThreeDSpace= _.orderBy(data['3DSpace'], 'name')
+                        this.other=data.other
+                        load.$emit('finish')
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+            }
+        })
+    },{once:true})
+</script>
+<title>无缝地图游戏地图大小排行</title>
+<link href="./smg.css" rel=stylesheet>
+
+<loading id=loading :class={hide:hide}>
+    <h1>加载中</h1>
+</loading>
+<content>
+<!-- it:item n:name s:size t:tag -->
+<section>
+<article>
+    <h3>无缝地图游戏地图大小排行</h3>
+</article>
+<div>
+<it v-if='base != null' v-for="(item,index) in base">
+    <n :title=item.fullname>{{item.name}}</n>
+    <s>{{hnum(item.size)}}</s>
+    <t v-if='item.tags!=null'>
+        <template v-for="(tag,index) in item.tags">
+            <pg v-if='tag=="pg"'></pg>
+            <ss v-if='tag=="ss"'></ss>
+        </template>
+    </t>
+    <t v-else></t>
+</it>
+<it v-else>
+    <n>加载中</n>
+    <s>0</s>
+    <t></t>
+</it>
+</div>
+<article>
+    <h3>一些3D空间的游戏</h3>
+</article>
+<div>
+<it v-if='base != null' v-for="(item,index) in ThreeDSpace">
+    <n :title=item.fullname>{{item.name}}</n>
+    <t v-if='item.tags!=null'>
+        <template v-for="(tag,index) in item.tags">
+            <pg v-if='tag=="pg"'></pg>
+            <ss v-if='tag=="ss"'></ss>
+            <span v-if='typeof tag == "object"'>{{tag.m}}</span>
+        </template>
+    </t>
+    <t v-else></t>
+</it>
+<it v-else>
+    <n>加载中</n>
+    <t></t>
+</it>
+</div>
+<article>
+    <h3>特殊</h3>
+</article>
+<div>
+<it v-if='base != null' v-for="(item,index) in other">
+    <n :title=item.fullname>{{item.name}}</n>
+    <t v-if='item.tags!=null'>
+        <template v-for="(tag,index) in item.tags">
+            <pg v-if='tag=="pg"'></pg>
+            <ss v-if='tag=="ss"'></ss>
+            <inf v-if='tag=="inf"'></inf>
+            <span v-if='typeof tag == "object"'>{{tag.m}}</span>
+        </template>
+    </t>
+    <t v-else></t>
+</it>
+<it v-else>
+    <n>加载中</n>
+    <t></t>
+</it>
+</div>
+<article>
+    <h4>参与完善改进此排行</h4>
+    <a target="_blank" href="https://github.com/Aditrc/SMGSize">在github提交数据</a>
+    OR
+    <a target="_blank" href="https://github.com/Aditrc/aditrc.github.io">改进此页面</a>
+    <h4>其他</h4>
+    <a target="_blank" href="http://static.abits.io/smg/">此页面的静态镜像</a>
+</article>
+</section>
+</content>
